@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: tournoi_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tournoi_golf
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
